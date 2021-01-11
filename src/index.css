@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "ggsans-reg";
+  src: url("./assets/fonts/GoogleSans-Regular.otf");
+}
+
+@font-face {
+  font-family: "ggsans-bold";
+  src: url("./assets/fonts/GoogleSans-Bold.otf");
+}
+
+@font-face {
+  font-family: "ggsans-medium";
+  src: url("./assets/fonts/GoogleSans-Medium.otf");
+}
+
+body {
+  margin: 0;
+  font-family: "ggsans-reg";
+  /* -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

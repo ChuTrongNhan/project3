@@ -1,0 +1,31 @@
+.app-container {
+  display: flex;
+  flex-direction: "row";
+}
+
+.my-button {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.my-button span {
+  font-family: "ggsans-reg";
+  padding-right: 8px;
+}
+
+.my-dark-button {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  background-color: #161616;
+  color: white;
+}
+
+.my-dark-button span {
+  font-family: "ggsans-reg";
+}
+
+.my-modal-header {
+  padding: 0
+}

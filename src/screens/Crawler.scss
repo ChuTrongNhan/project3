@@ -1,0 +1,98 @@
+.crawler {
+  background-color: white;
+  height: 100vh;
+  flex: 1;
+  padding: 0 18px;
+
+  .header {
+    display: flex;
+    flex-direction: "row";
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border-bottom: 1px solid #E0E0E2;
+    padding: 0 24px;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+
+    .title-primary {
+      font-family: "ggsans-bold";
+      font-size: 28px;
+      line-height: 28px;
+      color: #111111;
+    }
+
+    .title-secondary {
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #C2C1C2;
+    }
+  }
+
+  .crawler-form {
+    padding: 18px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .specification {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    flex: 1;
+
+    .label {
+      font-size: 13px;
+      font-weight: bold;
+      padding: 3px;
+      color: #111111;
+    }
+    
+    .input-row {
+      display: flex;
+      flex-direction: "row";
+    }
+  }
+
+  .input--border-left {
+    padding-left: 18px;
+    margin-left: 18px;
+    border-left: 1px solid #C2C1C2;
+    flex: 1;
+  }
+
+  .selector-container {
+    border: 1px solid #E0E0E2;
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .add-selector {
+    border: 1px dashed #E0E0E2;
+    border-radius: 8px;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    width: 200px;
+    margin: auto;
+  }
+}
+
+.gray-blur {
+  color: #C2C1C2;
+  font-family: 'ggsans-reg';
+}
+
+.blue-highlight {
+  color: #1675E0;
+  font-family: 'ggsans-reg';
+}

@@ -1,0 +1,38 @@
+.selector-row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+  border-bottom: 2px solid #673AB7;
+
+  .icon__arrow-down {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #673AB7;
+    transform: translate(0,11px);
+  }
+
+  .selector__attr {
+    width: 100%;
+  }
+
+  .icon-style {
+    color: rgb(150, 150, 150);
+    text-align: center;
+    padding-left: 18px;
+    padding-right: 18px;
+    cursor: pointer;
+  }
+}
+
+.line {
+  height: 0;
+  width: 10px;
+  margin: 4px;
+  border: 1px solid rgb(211, 211, 211);
+}

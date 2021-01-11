@@ -1,0 +1,35 @@
+.no-crawler {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: #f7f7fa;
+
+  .no-crawler--container {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    padding: 36px 72px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 7px 16px -1px rgba(100, 100, 100, 0.1); 
+    box-shadow: 0px 7px 16px -1px rgba(99, 99, 99, 0.11);
+
+    .form {
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .input-title {
+      font-family: 'ggsans-bold';
+      font-size: 36px;
+      line-height: 36px;
+      color: #111;
+    }
+  
+    .input {
+      margin: 18px 0;
+    }
+  }
+}
