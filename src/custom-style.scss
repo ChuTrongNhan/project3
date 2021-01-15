@@ -1,31 +1,66 @@
+@import "./colors.scss";
+
 .app-container {
   display: flex;
   flex-direction: "row";
 }
 
 .my-button {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 8px 24px;
+  border-radius: 24px;
+  color: $button-text;
+  background-color: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  span {
+    font-family: "ggsans-reg";
+    padding-right: 8px;
+    color: $button-text;
+  }
+
+  &--accent {
+    @extend .my-button;
+    width: 100%;
+    background-color: $accent;
+    color: $white;
+  }
+
+  &--ghost {
+    @extend .my-button;
+    background-color: transparent;
+    color: $tx-dark;
+    border: 1px solid $border;
+
+    span {
+      font-family: "ggsans-reg";
+      padding-right: 8px;
+      color: inherit;
+    }
+  }
+
+  &--subtle {
+    @extend .my-button;
+    background-color: transparent;
+    color: $tx-light;
+    border: 1px solid $border;
+  }
 }
 
-.my-button span {
-  font-family: "ggsans-reg";
-  padding-right: 8px;
-}
-
-.my-dark-button {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  text-align: center;
-  background-color: #161616;
-  color: white;
-}
-
-.my-dark-button span {
-  font-family: "ggsans-reg";
+.input--icon {
+  color: $primary;
 }
 
 .my-modal-header {
   padding: 0
+}
+
+.loading-backdrop {
+    position: absolute;
+    background: $backdrop;
+    height: 100%;
+    width: 100%;
+    z-index: 998;
 }

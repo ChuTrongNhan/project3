@@ -5,12 +5,13 @@ import { Loader } from "rsuite";
 import Crawler from "./Crawler";
 import CrawlerList from "./CrawlerList";
 import NoCrawler from "./NoCrawler";
+import CrawlingModal from "../components/crawler/Crawling.modal";
 
 import "./Dashboard.scss";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
-  const [selectedId, setSelectedId] = useState(-1);
+  const [selectedId, setSelectedId] = useState("");
   const [crawlerList, setCrawlerList] = useState([]);
 
   const selectedCrawler = useMemo(() => {
@@ -24,8 +25,9 @@ const Dashboard = () => {
         const response = await axios.get("http://localhost:8000/crawler");
         if (response.status === 200) setCrawlerList(response.data);
         else console.error(response.statusText);
-        setLoading(false);
-      } catch {
+      } catch (error) {
+        console.log("frontend error", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -34,7 +36,7 @@ const Dashboard = () => {
   }, []);
 
   const addNewCrawler = async (newName) => {
-    if (newName.length <= 0) return;
+    if (newName.length <= 0 || loading) return;
     setLoading(true);
     try {
       const newCrawler = await axios.post("http://localhost:8000/crawler", {
@@ -44,18 +46,15 @@ const Dashboard = () => {
       const newCrawlerList = [newCrawler.data, ...crawlerList];
       setCrawlerList(newCrawlerList);
       setSelectedId(newCrawler.data.id);
-      setLoading(false);
     } catch (error) {
       console.log("frontend error", error);
+    } finally {
       setLoading(false);
     }
   };
 
-  const selectCrawler = (i) => {
-    setSelectedId(i);
-  };
-
   const saveCrawler = async (payload) => {
+    if (loading) return;
     setLoading(true);
     try {
       await axios.post("http://localhost:8000/updatecrawler", {
@@ -67,100 +66,72 @@ const Dashboard = () => {
           crawler.id !== selectedId ? crawler : { ...crawler, ...payload }
         )
       );
-      setLoading(false);
     } catch (error) {
       console.log("frontend error", error);
+    } finally {
       setLoading(false);
     }
   };
 
   const deleteCrawler = async (id) => {
+    if (loading) return;
     setLoading(true);
     try {
       await axios.post("http://localhost:8000/deletecrawler", {
-        id: id,
+        id,
       });
-      setSelectedId(-1);
+      setSelectedId("");
       setCrawlerList((crawlerList) =>
         crawlerList.filter((crawler) => crawler.id !== id)
       );
-      setLoading(false);
     } catch (error) {
       console.log("frontend error", error);
+    } finally {
       setLoading(false);
     }
   };
 
-  /*
-  const list = ["abc", "test"];
-
-  // set up local state for generating the download link
-  const [downloadLink, setDownloadLink] = useState("");
-
-  // function for generating file and set download link
-  const makeTextFile = () => {
-    // This creates the file.
-    // In my case, I have an array, and each item in
-    // the array should be on a new line, which is why
-    // I use .join('\n') here.
-    const data = new Blob([list.join("\n")], { type: "text/plain" });
-
-    // this part avoids memory leaks
-    if (downloadLink !== "") window.URL.revokeObjectURL(downloadLink);
-
-    // update the download link state
-    setDownloadLink(window.URL.createObjectURL(data));
+  const startCrawl = async (id) => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      await axios.post("http://localhost:8000/crawl", { id });
+    } catch (error) {
+      console.log("frontend error", error);
+    } finally {
+      setLoading(false);
+    }
   };
-
-  // Call the function if list changes
-  useEffect(() => {
-    makeTextFile();
-  }, [list]);
-*/
-  // class MyApp extends React.Component {
-  //   downloadTxtFile = () => {
-  //     const element = document.createElement("a");
-  //     const file = new Blob([document.getElementById('input').value],
-  //                 {type: 'text/plain;charset=utf-8'});
-  //     element.href = URL.createObjectURL(file);
-  //     element.download = "myFile.txt";
-  //     document.body.appendChild(element);
-  //     element.click();
-  //   }
-  //   render() {
-  //     return (
-  //      <div>
-  //        <input id="input" />
-  //        <button onClick={this.downloadTxtFile}>Download</button>
-  //       </div>
-  //     );
-  //    }
-  //  }
 
   return (
     <div className="dashboard">
-      {loading ? <Loader backdrop content="loading..." vertical /> : null}
+      {loading ? (
+        <>
+          <Loader
+            style={{ zIndex: 999 }}
+            inverse
+            backdrop
+            content="loading..."
+            vertical
+          />
+          <div className="loading-backdrop"></div>
+        </>
+      ) : null}
+      <CrawlingModal show={false} />
       <CrawlerList
         crawlerList={crawlerList}
         selectedId={selectedId}
-        onSelect={selectCrawler}
+        onSelect={setSelectedId}
         onDelete={deleteCrawler}
       />
-      {/* <a
-        // this attribute sets the filename
-        download="list.txt"
-        // link to the download URL
-        href={downloadLink}
-      >
-        download
-      </a> */}
-      {selectedId === -1 ? (
+      {selectedId === "" ? (
         <NoCrawler onAddNewCrawler={addNewCrawler} />
       ) : (
         <Crawler
           key={selectedId}
           crawler={selectedCrawler}
           onSave={saveCrawler}
+          onStartCrawl={startCrawl}
         />
       )}
     </div>

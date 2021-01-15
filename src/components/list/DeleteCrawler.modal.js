@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Icon, Button } from "rsuite";
+import { Modal, Icon } from "rsuite";
 
 const DeleteCrawler = ({ show, onConfirm, onCancel, crawlerName }) => {
   return (
@@ -41,12 +41,12 @@ const DeleteCrawler = ({ show, onConfirm, onCancel, crawlerName }) => {
           flexDirection: "row",
         }}
       >
-        <Button onClick={onConfirm} color="violet">
+        <div onClick={onConfirm} className="my-button">
           Ok
-        </Button>
-        <Button onClick={onCancel} appearance="subtle">
+        </div>
+        <div onClick={onCancel} className="my-button--subtle">
           Cancel
-        </Button>
+        </div>
       </Modal.Footer>
     </Modal>
   );

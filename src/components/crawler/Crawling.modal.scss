@@ -1,0 +1,13 @@
+@import "../../colors.scss";
+
+.modal-body {
+  .progress-indicator {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  }
+}
+
+.modal-footer {
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "rsuite";
+import { Modal } from "rsuite";
 
 const CreateCrawlerModel = ({ show, confirm, cancel }) => {
   return (
@@ -9,12 +9,12 @@ const CreateCrawlerModel = ({ show, confirm, cancel }) => {
       </Modal.Header>
       <Modal.Body></Modal.Body>
       <Modal.Footer>
-        <Button onClick={confirm} appearance="primary">
+        <div onClick={confirm} className="my-button">
           Ok
-        </Button>
-        <Button onClick={cancel} appearance="subtle">
+        </div>
+        <div onClick={cancel} className="my-button--subtle">
           Cancel
-        </Button>
+        </div>
       </Modal.Footer>
     </Modal>
   );

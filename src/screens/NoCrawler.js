@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import image1 from "../assets/images/image1.png";
-import { Input, Icon, Button } from "rsuite";
+import { Input, Icon } from "rsuite";
 
 import "./NoCrawler.scss";
 
@@ -25,15 +25,14 @@ const NoCrawler = ({ onAddNewCrawler }) => {
             placeholder="Crawler's name (12 characters)"
             className="input"
           />
-          <Button
-            color="violet"
-            className="my-button"
+          <div
+            className="my-button--accent"
             onClick={() => onAddNewCrawler(newName)}
             style={{ width: "100%" }}
           >
             <span>Create New Crawler</span>
             <Icon icon="plus" />
-          </Button>
+          </div>
         </div>
       </div>
     </div>

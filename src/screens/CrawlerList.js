@@ -6,7 +6,7 @@ import "./CrawlerList.scss";
 const iconDropdown = () => {
   return (
     <div style={{ padding: 8 }}>
-      <Icon icon="ellipsis-v" style={{ color: "#e0e0e2" }} />
+      <Icon icon="ellipsis-v" className="icon-dropdown" />
     </div>
   );
 };
@@ -57,10 +57,18 @@ const CrawlerList = ({ crawlerList, selectedId, onSelect, onDelete }) => {
               <span className="crawler-date">{crawler.date}</span>
             </div>
             {selectedId === crawler.id ? (
-              <Dropdown className="menu-dropdown" renderTitle={iconDropdown}>
+              <Dropdown
+                className="menu-dropdown"
+                renderTitle={iconDropdown}
+                placement="bottomEnd"
+              >
                 <Dropdown.Item onSelect={() => onDelete(crawler.id)}>
                   <Icon icon="trash-o" />
                   Delete
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Icon icon="edit" />
+                  Rename
                 </Dropdown.Item>
               </Dropdown>
             ) : null}
@@ -68,7 +76,7 @@ const CrawlerList = ({ crawlerList, selectedId, onSelect, onDelete }) => {
         ))}
       </div>
       <div className="footer">
-        <div className="my-dark-button" onClick={() => onSelect(-1)}>
+        <div className="my-button--accent" onClick={() => onSelect("")}>
           <span>Create a new one!</span>
         </div>
       </div>
